@@ -17,10 +17,13 @@ class AudioPlayer extends React.Component {
   }
 
   setupAudio(episode) {
-    this.audio = document.createElement('audio')
+    this.audio = this.props.audio
     if (episode) {
       this.audio.src = episode.url
-      this.audio.currentTime = this.props.defaultStartTime
+
+      if (this.props.autoplay) {
+        this.audio.play()
+      }
     }
   }
 
@@ -71,7 +74,9 @@ class AudioPlayer extends React.Component {
 
 AudioPlayer.defaultProps = {
   updateProgress: function() {},
-  defaultStartTime: 110,
+  get audio() {
+    return document.createElement('audio')
+  }
 }
 
 export default AudioPlayer

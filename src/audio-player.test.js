@@ -4,6 +4,24 @@ import { shallow } from 'enzyme'
 import td from 'testdouble'
 
 describe('<AudioPlayer>', function() {
+  let fakeAudio, episode;
+
+  beforeEach(function() {
+    episode = {
+      title: 'Episode Title',
+      podcast: {
+        title: 'Revolutions'
+      },
+      url: 'https://www.s3.com/podcast-episode-download.mp3'
+    }
+
+    fakeAudio = {
+      play: td.function(),
+      pause: td.function(),
+      currentTime: 100
+    }
+  })
+
   it('should not render if there is no episode', function() {
     let wrapper = shallow(<AudioPlayer />)
 
@@ -11,12 +29,6 @@ describe('<AudioPlayer>', function() {
   })
 
   it('should render if there is an episode', function() {
-    let episode = {
-      title: 'Episode Title',
-      podcast: {
-        title: 'Revolutions'
-      }
-    }
     let wrapper = shallow(<AudioPlayer episode={episode} />)
 
     expect(wrapper.find('.episode-title').text()).toBe('Episode Title')
@@ -24,47 +36,29 @@ describe('<AudioPlayer>', function() {
   })
 
   it('should render a play button', function() {
-    let episode = {
-      title: 'Episode Title',
-      podcast: {
-        title: 'Revolutions'
-      }
-    }
     let wrapper = shallow(<AudioPlayer episode={episode} />)
 
     expect(wrapper.find('.play-button').length).toBe(1)
   })
 
   it('should display a pause button after play is clicked', function() {
-    let episode = {
-      title: 'Episode Title',
-      podcast: {
-        title: 'Revolutions'
-      }
-    }
     let wrapper = shallow(<AudioPlayer episode={episode} />)
 
     wrapper.find('.play-button').simulate('click')
-    
+
     expect(wrapper.find('.pause-button').length).toBe(1)
   })
 
   it('should toggle the play pause state', function() {
-    let episode = {
-      title: 'Episode Title',
-      podcast: {
-        title: 'Revolutions'
-      }
-    }
     let wrapper = shallow(<AudioPlayer episode={episode} />)
 
     wrapper.find('.play-button').simulate('click')
-    
+
     expect(wrapper.find('.play-button').length).toBe(0)
     expect(wrapper.find('.pause-button').length).toBe(1)
 
     wrapper.find('.pause-button').simulate('click')
-    
+
     expect(wrapper.find('.play-button').length).toBe(1)
     expect(wrapper.find('.pause-button').length).toBe(0)
   })
@@ -77,11 +71,46 @@ describe('<AudioPlayer>', function() {
       }
     }
     let updateProgress = td.function()
-    let wrapper = shallow(<AudioPlayer episode={episode} updateProgress={updateProgress} defaultStartTime={100}/>)
+    let wrapper = shallow(<AudioPlayer episode={episode} updateProgress={updateProgress} audio={fakeAudio}/>)
 
     wrapper.find('.play-button').simulate('click')
     wrapper.find('.pause-button').simulate('click')
 
     td.verify(updateProgress(100))
+  })
+
+  it('should play the audio element when played', function() {
+    let wrapper = shallow(<AudioPlayer episode={episode} audio={fakeAudio}/>)
+
+    wrapper.find('.play-button').simulate('click')
+
+    td.verify(fakeAudio.play())
+  })
+
+  it('should pause the audio element when paused', function() {
+    let wrapper = shallow(<AudioPlayer episode={episode} audio={fakeAudio}/>)
+
+    wrapper.find('.play-button').simulate('click')
+    wrapper.find('.pause-button').simulate('click')
+
+    td.verify(fakeAudio.pause())
+  })
+
+  it('should set the audio src when an episode prop is provided', function() {
+    let fakeAudio = {}
+    let wrapper = shallow(<AudioPlayer episode={null} audio={fakeAudio}/>)
+
+    wrapper.setProps({
+      episode: episode
+    })
+
+    expect(fakeAudio.src).toBe('https://www.s3.com/podcast-episode-download.mp3')
+  })
+
+
+  it('should play the audio when autoplay is provided', function() {
+    let wrapper = shallow(<AudioPlayer episode={episode} audio={fakeAudio} autoplay/>)
+
+    td.verify(fakeAudio.play())
   })
 })
