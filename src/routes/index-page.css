@@ -1,0 +1,21 @@
+.episode {
+  display: flex;
+  margin: 20px 60px;
+}
+
+.episode-image {
+  flex: 2;
+}
+
+.title {
+  text-align: left;
+  flex: 6;
+}
+
+.episode-duration {
+  flex: 1;
+}
+
+.play-episode {
+  flex: 2;
+}
