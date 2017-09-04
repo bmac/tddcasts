@@ -8,10 +8,10 @@ const visit = (location = '/') => {
 }
 
 describe('Acceptance Test Home page', function() {
-  it('it should render a list of podcast', () => {
+  it('it should render a list of recent episodes', () => {
 
     return visit('/').then(wrapper => {
-      expect(wrapper.find('main').text()).toBe('list all of the podcasts')
+      expect(wrapper.find('.episode').length).toBe(7)
     })
   });
 })
