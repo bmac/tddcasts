@@ -8,10 +8,14 @@ const visit = (location = '/') => {
 }
 
 describe('Acceptance Test Home page', function() {
-  it('it should render a list of recent episodes', () => {
+  it('it should render a list of recent episodes', async () => {
 
-    return visit('/').then(wrapper => {
-      expect(wrapper.find('.episode').length).toBe(7)
-    })
-  });
+    let wrapper = await visit('/')
+    expect(wrapper.find('.episode').length).toBe(4)
+
+    let episode = wrapper.find('.episode').first()
+    expect(episode.find('.episode-title').text()).toBe('7.08- The Political Question')
+    expect(episode.find('.podcast-title').text()).toBe('Revolutions')
+    expect(episode.find('.episode-duration').text()).toBe('41 mins')
+  })
 })
