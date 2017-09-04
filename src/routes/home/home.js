@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Episode from './components/episode'
 import groupBy from 'lodash/groupBy'
-import './index-page.css'
+import './home.css'
 
 const episodes = [
   {
@@ -60,20 +61,7 @@ class IndexPage extends Component {
           return (
             <section key={index} className="episode-group">
               <h3 className="group-title">{new Date(episodes[0].publishedDate).toLocaleDateString()}</h3>
-              {episodes.map(episode => {
-                return (
-                  <article key={episode.id} className="episode">
-                    <img className="episode-image" src={episode.image} alt={episode.title} />
-                    <div className="title">
-                      <div className="podcast-title">{episode.podcast.title}</div>
-                      <div className="episode-title">{episode.title}</div>
-                    </div>
-                    <div className="episode-duration">{episode.duration}</div>
-                    <button className="play-episode">Play</button>
-                  </article>
-                )
-              }
-                           )}
+              {episodes.map(episode => (<Episode episode={episode} key={episode.id} />))}
             </section>
           )
         })}

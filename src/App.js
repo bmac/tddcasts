@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css';
-import Index from './routes/index'
+import Home from './routes/home/home'
 
 class App extends Component {
   render() {
@@ -10,7 +10,7 @@ class App extends Component {
         <div className="App">
           <header>Header</header>
           <main>
-            <Route path="/" component={Index} exact />
+            <Route path="/" component={Home} exact />
           </main>
           <footer>footer</footer>
         </div>

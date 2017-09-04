@@ -1,12 +1,12 @@
 import React from 'react';
-import IndexPage from './index';
+import IndexPage from './home';
 import { shallow } from 'enzyme'
 
 describe('Index Page Test', function() {
   it('should render a list of episodes', function() {
     let wrapper = shallow(<IndexPage />)
 
-    expect(wrapper.find('.episode').length).toBe(4)
+    expect(wrapper.find('Episode').length).toBe(4)
   })
 
   it('should group episodes by day', function() {
