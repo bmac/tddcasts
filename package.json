@@ -4,18 +4,27 @@
   "private": true,
   "dependencies": {
     "enzyme": "^2.9.1",
+    "fetch-vcr": "^1.1.1",
     "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.12",
     "react-test-renderer": "^15.6.1",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "testdouble": "^3.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "VCR_MODE=cache REACT_APP_HOST=http://localhost:8080 react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "proxy": {
+    "^/api": {
+      "target": "http://localhost:8080"
+    }
   }
 }
