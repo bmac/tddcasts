@@ -1,10 +1,19 @@
 import React from 'react';
 import App from '../App';
 import { mount } from 'enzyme'
+import fetch from 'fetch-vcr'
+window.fetch = fetch
+
+// reset()
+// setup()
+// visit()
+// waitForPromise() 
 
 const visit = (location = '/') => {
   let wrapper = mount(<App />)
-  return Promise.resolve(wrapper)
+  return new Promise(resolve => {
+    setTimeout(resolve, 10)
+  }).then(() => wrapper)
 }
 
 describe('Acceptance Test Home page', function() {
