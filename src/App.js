@@ -3,6 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css';
 import Home from './routes/home/home'
 import AudioPlayer from './audio-player'
+import { Provider } from 'react-redux'
+import createStore from './create-store'
 
 let episode = {
   id: 1,
@@ -21,19 +23,23 @@ let episode = {
   },
 }
 
+const store = createStore()
+
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <header>Header</header>
-          <main>
-            <Route path="/" component={Home} exact />
-          </main>
-          <AudioPlayer episode={episode} />
-          <footer>footer</footer>
-        </div>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <header>Header</header>
+            <main>
+              <Route path="/" component={Home} exact />
+            </main>
+            <AudioPlayer episode={episode} />
+            <footer>footer</footer>
+          </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
