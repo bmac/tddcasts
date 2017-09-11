@@ -2,3 +2,9 @@ List all recent podcast episodes.
 Play/Resume a podcast
 Pause.
 save update play state
+
+Fetch recent episodes
+Load recent episodes into redux
+Play an episode form the episode list
+save update play state
+Add a detail view
