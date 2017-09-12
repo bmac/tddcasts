@@ -1,0 +1,1 @@
+{"url":"http://localhost:8080/api/episode/","status":200,"statusText":"OK","ok":true,"headers":{"date":["Tue, 12 Sep 2017 21:01:03 GMT"],"server":["WSGIServer/0.2 CPython/3.4.3"],"allow":["GET, POST, HEAD, OPTIONS"],"x-frame-options":["SAMEORIGIN"],"vary":["Accept, Cookie"],"content-length":["1405"],"content-type":["application/json"]}}

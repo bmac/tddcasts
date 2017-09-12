@@ -1,6 +1,4 @@
 from django.contrib import admin
-from .models import Podcast, Episode, ListeningProgress
+from .models import Episode
 
-admin.site.register(Podcast)
 admin.site.register(Episode)
-admin.site.register(ListeningProgress)

@@ -12,7 +12,7 @@ export class IndexPage extends Component {
   }
   render() {
     let episodeGrouping = groupBy(this.props.episodes, (episode) => {
-      let pubDate = new Date(episode.published_date)
+      let pubDate = new Date(episode.publishedDate)
       return `${pubDate.getFullYear()}-${pubDate.getMonth()}-${pubDate.getDay()}`
     })
     let episodeGroups  = Object.keys(episodeGrouping).sort().reverse().map(key => {
@@ -23,7 +23,7 @@ export class IndexPage extends Component {
         {episodeGroups.map((episodes, index) => {
           return (
             <section key={index} className="episode-group">
-              <h3 className="group-title">{new Date(episodes[0].published_date).toLocaleDateString()}</h3>
+              <h3 className="group-title">{new Date(episodes[0].publishedDate).toLocaleDateString()}</h3>
               {episodes.map(episode => (<Episode episode={episode} key={episode.id} playEpisode={this.props.playEpisode} />))}
             </section>
           )

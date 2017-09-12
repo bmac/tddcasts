@@ -16,41 +16,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.models import User
-from podcast.models import Podcast, Episode, ListeningProgress
+from podcast.models import Episode
 from rest_framework import routers, serializers, viewsets
 
 # Serializers define the API representation.
-class PodcastSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Podcast
-        fields = ('created_at', 'updated_at', 'title')
-
-# ViewSets define the view behavior.
-class PodcastViewSet(viewsets.ModelViewSet):
-    queryset = Podcast.objects.all()
-    serializer_class = PodcastSerializer
-
-
-# Serializers define the API representation.
-class ListeningProgressSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ListeningProgress
-        fields = ('created_at', 'updated_at', 'duration', 'finished', 'episode')
-
-# ViewSets define the view behavior.
-class ListeningProgressViewSet(viewsets.ModelViewSet):
-    queryset = Podcast.objects.all()
-    serializer_class = ListeningProgressSerializer
-
-# Serializers define the API representation.
 class EpisodeSerializer(serializers.ModelSerializer):
-    included_serializers = {
-        'podcast': PodcastSerializer,
-        'listeningprogress': ListeningProgressSerializer
-    }
     class Meta:
         model = Episode
-        fields = ('created_at', 'updated_at', 'title', 'duration', 'published_date', 'image', 'enclosure_url', 'podcast', 'listening_progress')
+        fields = ('id', 'title', 'podcastTitle', 'publishedDate', 'image', 'url', 'duration', 'currentTime')
 
 # ViewSets define the view behavior.
 class EpisodeViewSet(viewsets.ModelViewSet):
@@ -59,9 +32,7 @@ class EpisodeViewSet(viewsets.ModelViewSet):
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'podcast', PodcastViewSet)
-router.register(r'episode/recent', EpisodeViewSet)
-router.register(r'listening-progress', ListeningProgressViewSet)
+router.register(r'episode', EpisodeViewSet)
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),

@@ -8,43 +8,22 @@ describe('records reducer test', function() {
 
     store.dispatch({
       type: 'UPDATE_RECORDS',
-      query: 'recent',
-      document: {
-        data: [{
-          type: 'Episode',
-          id: '1',
-          attributes: {
-            title: '7.08- The Political Question',
-          },
-          relationships: {
-            podcast: {
-              data: {
-                type: 'Podcast',
-                id: '1'
-              }
-            },
-          }
-        }],
-        included: [
-          {
-            type: 'Podcast',
-            id: '1',
-            attributes: {
-              title: 'Revolutions'
-            }
-          }
-        ]
-      }
+      results: [{
+        title: '7.08- The Political Question',
+        podcastTitle: 'Revolutions',
+        publishedDate: '2017-09-01T20:04:06Z',
+        duration: 2807.797583,
+        currentTime: 0.0
+      }]
     })
 
     expect(selectQuery(store.getState(), 'recent'))
       .toEqual([{
-        id: '1',
         title: '7.08- The Political Question',
-        podcast: {
-          id: '1',
-          title: 'Revolutions'
-        }
+        podcastTitle: 'Revolutions',
+        publishedDate: '2017-09-01T20:04:06Z',
+        duration: 2807.797583,
+        currentTime: 0.0
       }])
   })
 })

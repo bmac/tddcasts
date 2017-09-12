@@ -9,9 +9,7 @@ describe('<AudioPlayer>', function() {
   beforeEach(function() {
     episode = {
       title: 'Episode Title',
-      podcast: {
-        title: 'Revolutions'
-      },
+      podcastTitle: 'Revolutions',
       url: 'https://www.s3.com/podcast-episode-download.mp3'
     }
 

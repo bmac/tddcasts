@@ -7,12 +7,10 @@ describe('<Episode>', function() {
   let episode = {
     id: 1,
     title: 'Episode Title',
-    duration: '41 mins',
+    duration: 2450,
     publishedDate: 1504527073690,
     image: '/images/b1ccb690-fd97-0130-c6ee-723c91aeae46.jpg',
-    podcast: {
-      title: 'Revolutions'
-    }
+    podcastTitle: 'Revolutions',
   };
 
   it('should render an episode', function() {

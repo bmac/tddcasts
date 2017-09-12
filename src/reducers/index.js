@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import records, * as recordsSelectors from './records'
+import records from './records'
 import audioPlayer, * as audioPlayerSelectors from './audio-player'
 
 export default combineReducers({
@@ -8,9 +8,7 @@ export default combineReducers({
 })
 
 
-export const selectQuery = (state, query) =>
-  recordsSelectors.selectQuery(state.records, query)
-
+export const selectQuery = (state, query) => state.records
 
 export const selectCurrentEpisode = (state) =>
   audioPlayerSelectors.selectCurrentEpisode(state.audioPlayer)

@@ -6,7 +6,9 @@ export class AudioPlayer extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      isPlaying: this.props.autoplay,
+    }
     this.playEpisode = this.playEpisode.bind(this)
     this.pauseEpisode = this.pauseEpisode.bind(this)
     this.setupAudio(this.props.episode)
@@ -28,13 +30,10 @@ export class AudioPlayer extends React.Component {
   setupAudio(episode) {
     this.audio = this.audio || this.props.audio
     if (episode) {
-      this.audio.src = episode.enclosure_url
+      this.audio.src = episode.url
 
       if (this.props.autoplay) {
         this.audio.play()
-        this.setState({
-          isPlaying: true,
-        })
       }
     }
   }
@@ -76,7 +75,7 @@ export class AudioPlayer extends React.Component {
     }
     return (
       <div className="audio-player">
-        <div className="podcast-title">{episode.podcast.title}</div>
+        <div className="podcast-title">{episode.podcastTitle}</div>
         <div className="episode-title">{episode.title}</div>
         {this.renderPlayButton()}
       </div>
