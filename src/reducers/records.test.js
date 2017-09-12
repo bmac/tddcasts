@@ -1,5 +1,5 @@
-import createStore from './create-store'
-import { selectQuery } from './reducer'
+import createStore from '../create-store'
+import { selectQuery } from './index'
 
 describe('records reducer test', function() {
 

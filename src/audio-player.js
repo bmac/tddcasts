@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { selectIsPlaying, selectCurrentEpisode } from './reducers'
 
-class AudioPlayer extends React.Component {
+export class AudioPlayer extends React.Component {
 
   constructor(props) {
     super(props)
@@ -16,13 +18,23 @@ class AudioPlayer extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    if (this.audio) {
+      this.audio.pause()
+      this.audio = null
+    }
+  }
+
   setupAudio(episode) {
-    this.audio = this.props.audio
+    this.audio = this.audio || this.props.audio
     if (episode) {
-      this.audio.src = episode.url
+      this.audio.src = episode.enclosure_url
 
       if (this.props.autoplay) {
         this.audio.play()
+        this.setState({
+          isPlaying: true,
+        })
       }
     }
   }
@@ -63,7 +75,7 @@ class AudioPlayer extends React.Component {
       return null
     }
     return (
-      <div>
+      <div className="audio-player">
         <div className="podcast-title">{episode.podcast.title}</div>
         <div className="episode-title">{episode.title}</div>
         {this.renderPlayButton()}
@@ -79,4 +91,11 @@ AudioPlayer.defaultProps = {
   }
 }
 
-export default AudioPlayer
+const mapStateToProps = (state) => {
+  return {
+    autoplay: selectIsPlaying(state),
+    episode: selectCurrentEpisode(state),
+  }
+}
+
+export default connect(mapStateToProps)(AudioPlayer)

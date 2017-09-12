@@ -7,7 +7,7 @@ window.fetch = fetch
 // reset()
 // setup()
 // visit()
-// waitForPromise() 
+// pauseForPromise()
 
 const visit = (location = '/') => {
   let wrapper = mount(<App />)
@@ -17,15 +17,27 @@ const visit = (location = '/') => {
 }
 
 describe('Acceptance Test Home page', function() {
+
   it('should render a list of recent episodes', async function() {
 
-    let wrapper = await visit('/')
-    expect(wrapper.find('.episode').length).toBe(4)
+    let page = await visit('/')
+    expect(page.find('.episode').length).toBe(4)
 
-    let episode = wrapper.find('.episode').first()
+    let episode = page.find('.episode').first()
 
     expect(episode.find('.episode-title').text()).toBe('7.08- The Political Question')
     expect(episode.find('.podcast-title').text()).toBe('Revolutions')
     expect(episode.find('.episode-duration').text()).toBe('41 mins')
+  })
+
+  it('should play an episode when clicked', async function() {
+
+    let page = await visit('/')
+    page.find('.play-episode').first().simulate('click')
+
+    let audioPlayer = page.find('.audio-player').first()
+
+    expect(audioPlayer.find('.episode-title').text()).toBe('7.08- The Political Question')
+    expect(audioPlayer.find('.pause-button').text()).toBe('Pause')
   })
 })

@@ -16,3 +16,12 @@ export const fetchRecentEpisodes = () => dispatch => {
       })
     })
 }
+
+
+
+export const playEpisode = (episode) => {
+  return {
+    type: 'PLAY_EPISODE',
+    episode,
+  }
+}

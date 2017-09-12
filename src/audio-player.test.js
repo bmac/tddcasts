@@ -1,5 +1,5 @@
 import React from 'react';
-import AudioPlayer from './audio-player';
+import { AudioPlayer } from './audio-player';
 import { shallow } from 'enzyme'
 import td from 'testdouble'
 
