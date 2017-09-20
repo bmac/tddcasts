@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatDuration } from '../../../formatters'
 
-const Episode = ({episode, playEpisode}) => {
+const Episode = ({episode, playEpisode, isPlaying}) => {
   return (
     <article key={episode.id} className="episode">
       <img className="episode-image" src={episode.image} alt={episode.title} />
@@ -11,7 +11,7 @@ const Episode = ({episode, playEpisode}) => {
       </div>
       <div className="episode-duration">{formatDuration(episode.duration, 'seconds')}</div>
       <div className="play-episode-container">
-        <button className="play-episode" type="button" onClick={playEpisode.bind(null, episode)}>Play</button>
+        <button className="play-episode" type="button" onClick={playEpisode.bind(null, episode)}>{isPlaying ? 'Playing…' : 'Play'}</button>
       </div>
     </article>
   )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { selectQuery } from '../../reducers'
+import { selectQuery, selectCurrentEpisode } from '../../reducers'
 import { fetchRecentEpisodes, playEpisode } from './actions'
 import Episode from './components/episode'
 import groupBy from 'lodash/groupBy'
@@ -24,7 +24,7 @@ export class IndexPage extends Component {
           return (
             <section key={index} className="episode-group">
               <h3 className="group-title">{new Date(episodes[0].publishedDate).toLocaleDateString()}</h3>
-              {episodes.map(episode => (<Episode episode={episode} key={episode.id} playEpisode={this.props.playEpisode} />))}
+              {episodes.map(episode => (<Episode episode={episode} key={episode.id} playEpisode={this.props.playEpisode} isPlaying={episode === this.props.currentEpisode }/>))}
             </section>
           )
         })}
@@ -36,6 +36,7 @@ export class IndexPage extends Component {
 const mapStateToProps = (state) => {
   return {
     episodes: selectQuery(state, 'recent-episodes'),
+    currentEpisode: selectCurrentEpisode(state),
   }
 }
 

@@ -34,7 +34,7 @@ describe('<Episode>', function() {
     let playingEpisode = shallow(<Episode episode={episode} isPlaying/>)
     let notPlaying = shallow(<Episode episode={episode} />)
 
-    expect(playingEpisode.find('.play-episode').text()).toBe('Playing...')
+    expect(playingEpisode.find('.play-episode').text()).toBe('Playing…')
     expect(notPlaying.find('.play-episode').text()).toBe('Play')
   })
 })
