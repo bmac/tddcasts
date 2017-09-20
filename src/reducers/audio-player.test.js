@@ -6,7 +6,7 @@ describe('audio player reducer test', function() {
   it('should play an episode', function() {
     let store = createStore()
     let episode = {}
-
+ 
     store.dispatch({
       type: 'PLAY_EPISODE',
       episode,

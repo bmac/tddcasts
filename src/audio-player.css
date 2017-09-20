@@ -1,0 +1,30 @@
+.audio-player {
+  padding: 20px;
+  background: #79aec8;
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.audio-player button {
+  background: none;
+  border: 0;
+}
+
+.audio-player .podcast-title {
+  color: #c4dce8;
+}
+
+.audio-player .episode-title {
+  color: #fff;
+}
+
+.ib {
+  display: inline-block;
+}
+
+.controls {
+  width: 60px;
+}

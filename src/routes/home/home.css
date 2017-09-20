@@ -1,21 +1,58 @@
+.episode-group {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.group-title {
+  color: #666;
+}
+
 .episode {
   display: flex;
-  margin: 20px 60px;
+  margin: 20px 0;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
 }
 
 .episode-image {
-  flex: 2;
+  height: 80px;
+  width: 80px;
+  border-radius: 5px;
+}
+
+.episode-title {
+  color: #447e9b;
+  font-weight: bold;
 }
 
 .title {
   text-align: left;
   flex: 6;
+  padding: 10px;
+}
+
+.podcast-title {
+  color: #A4A4A4;
 }
 
 .episode-duration {
   flex: 1;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.play-episode-container {
+  width: 80px;
+  display: flex;
+  align-items: center;
 }
 
 .play-episode {
-  flex: 2;
+  height: 30px;
+  width: 80px;
+
+  box-shadow: rgb(230, 122, 115) 0px 39px 0px -24px inset; background-color: rgb(228, 104, 93); border-radius: 4px; border: 1px solid rgb(255, 255, 255); display: inline-block; cursor: pointer; color: rgb(255, 255, 255); font-family: Arial; font-size: 15px; padding: 6px 15px; text-decoration: none; text-shadow: rgb(178, 62, 53) 0px 1px 0px;
 }

@@ -6,6 +6,7 @@
     "enzyme": "^2.9.1",
     "fetch-vcr": "^1.1.1",
     "lodash": "^4.17.4",
+    "rc-progress": "^2.2.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",

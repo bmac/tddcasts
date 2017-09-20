@@ -27,5 +27,14 @@ describe('<Episode>', function() {
     wrapper.find('.play-episode').simulate('click')
 
     td.verify(playEpisode(episode))
-    })
+  })
+
+
+  it('should call display playing when the episode is playing', function() {
+    let playingEpisode = shallow(<Episode episode={episode} isPlaying/>)
+    let notPlaying = shallow(<Episode episode={episode} />)
+
+    expect(playingEpisode.find('.play-episode').text()).toBe('Playing...')
+    expect(notPlaying.find('.play-episode').text()).toBe('Play')
+  })
 })

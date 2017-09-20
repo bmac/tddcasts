@@ -10,7 +10,9 @@ const Episode = ({episode, playEpisode}) => {
         <div className="episode-title">{episode.title}</div>
       </div>
       <div className="episode-duration">{formatDuration(episode.duration, 'seconds')}</div>
-      <button className="play-episode" type="button" onClick={playEpisode.bind(null, episode)}>Play</button>
+      <div className="play-episode-container">
+        <button className="play-episode" type="button" onClick={playEpisode.bind(null, episode)}>Play</button>
+      </div>
     </article>
   )
 }

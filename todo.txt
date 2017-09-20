@@ -3,6 +3,8 @@ Play/Resume a podcast
 Pause.
 save update play state
 
+Clicking play should update the play state on the episode in the list
+
 Fetch recent episodes
 Load recent episodes into redux
 Play an episode form the episode list

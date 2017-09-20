@@ -13,13 +13,13 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <div className="App">
-            <header>Header</header>
+          <div className="app">
+            <header><h3 className="site-title">TDDCasts</h3></header>
             <main>
               <Route path="/" component={Home} exact />
             </main>
-            <AudioPlayer />
-            <footer>footer</footer>
+            <AudioPlayer autoplay />
+            <footer></footer>
           </div>
         </BrowserRouter>
       </Provider>
