@@ -88,11 +88,11 @@ export class AudioPlayer extends React.Component {
 
   render() {
     const {episode} = this.props
-    if (!episode) {
+    //if (!!episode) {
       return null
-    }
+    //}
     return (
-      <div className="audio-player">
+      <div className="audio-player playing">
         <div className="controls ib">
           {this.renderPlayButton()}
         </div>
@@ -110,7 +110,7 @@ AudioPlayer.defaultProps = {
   updateProgress: function() {},
   get audio() {
     return document.createElement('audio')
-  }
+  },
 }
 
 const mapStateToProps = (state) => {

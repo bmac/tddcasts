@@ -28,5 +28,8 @@
     "^/api": {
       "target": "http://localhost:8080"
     }
+  },
+  "devDependencies": {
+    "jest-enzyme": "^3.8.3"
   }
 }

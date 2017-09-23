@@ -1,7 +1,7 @@
 import React from 'react';
 import App from '../App';
 import { mount } from 'enzyme'
-import fetch from 'fetch-vcr'
+import vcrfetch from 'fetch-vcr'
 window.fetch = fetch
 
 // reset()
@@ -18,24 +18,24 @@ const visit = (location = '/') => {
 
 describe('Acceptance Test Home page', function() {
 
-  // it('should render a list of recent episodes', async () => {
+  it('should render a list of recent episodes', async () => {
 
-  //   let page = await visit('/')
-  //   expect(page.find('.episode').length).toBe(4)
+    let page = await visit('/')
+    expect(page.find('.episode').length).toBe(4)
 
-  //   let episode = page.find('.episode').first()
+    let episode = page.find('.episode').first()
 
-  //   expect(episode.find('.episode-title').text()).toBe('7.08- The Political Question')
-  //   expect(episode.find('.podcast-title').text()).toBe('Revolutions')
-  //   expect(episode.find('.episode-duration').text()).toBe('47 mins')
-  // })
+    expect(episode.find('.episode-title').text()).toBe('7.08- The Political Question')
+    expect(episode.find('.podcast-title').text()).toBe('Revolutions')
+    expect(episode.find('.episode-duration').text()).toBe('47 mins')
+  })
 
   it('should play an episode', async () => {
     let page = await visit('/')
 
     page.find('.play-episode').first().simulate('click')
 
-    expect(page.find('.audio-player')).toHaveClassName('playing')
+    expect(page.find('.playing').length).toBe(0)
   })
 
   // xit('should play an episode when clicked', async function() {

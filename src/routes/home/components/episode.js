@@ -1,23 +1,18 @@
 import React from 'react';
 import { formatDuration } from '../../../formatters'
+import { connect } from 'react-redux'
 
-const Episode = ({episode, playEpisode, isPlaying}) => {
-  return (
-    <article key={episode.id} className="episode">
-      <img className="episode-image" src={episode.image} alt={episode.title} />
-      <div className="title">
-        <div className="podcast-title">{episode.podcastTitle}</div>
-        <div className="episode-title">{episode.title}</div>
-      </div>
-      <div className="episode-duration">{formatDuration(episode.duration, 'seconds')}</div>
-      <div className="play-episode-container">
-        <button className="play-episode" type="button" onClick={playEpisode.bind(null, episode)}>{isPlaying ? 'Playing…' : 'Play'}</button>
-      </div>
-    </article>
-  )
-}
+export const Episode = ({episode, playEpisode}) => (
+  <article className="episode">
+    <img src={episode.image} />
+    <div className="podcast">{episode.podcast}</div>
+    <div className="title">{episode.title}</div>
+  </article>
+)
+
 
 Episode.defaultProps = {
   playEpisode: function() {}
+  
 }
-export default Episode;
+export default connect()(Episode);

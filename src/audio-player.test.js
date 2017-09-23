@@ -14,7 +14,7 @@ describe('<AudioPlayer>', function() {
     }
 
     fakeAudio = {
-      play: td.function(),
+      play: jest.fn(),
       pause: td.function(),
       currentTime: 100
     }
@@ -106,10 +106,10 @@ describe('<AudioPlayer>', function() {
   })
 
 
-  it('should play the audio when autoplay is provided', function() {
+  it.only('should play the audio when autoplay is provided', function() {
     let wrapper = shallow(<AudioPlayer episode={episode} audio={fakeAudio} autoplay/>)
 
-    td.verify(fakeAudio.play())
+    expect(fakeAudio.play).toHaveBeenCalled()
   })
 })
 

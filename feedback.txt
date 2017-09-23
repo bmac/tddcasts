@@ -1,0 +1,49 @@
+when component testing talk about using default props for injecting props for testing
+
+redux tests
+
+story doesn't tests
+
+jumping throught things to quickly
+
+mention using the tests to drive out the failures and respond to the
+failures
+
+Tooling
+Workflow
+        make it easy
+
+
+Show a gif or running the test for the current file
+
+
+What is wrapper
+
+
+use has class instead of length for assertion
+
+Summary before thanks slide
+
+
+
+
+what is outisde in
+
+talk about archateture first before tools
+
+
+archatecture first     
+
+Summary
+
+we just walked throught, component, redux
+you would also have unit tests
+
+Revist archaterture
+  in between examples
+
+
+Add name to opening slide
+
+Add gif example of running tests
+

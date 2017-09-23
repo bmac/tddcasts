@@ -1,25 +1,15 @@
 const initalState = {
-  episode: null,
+  episode: undefined,
   isPlaying: false,
 }
 
 export default function reducer(state = initalState, action) {
    switch (action.type) {
-     case 'PLAY_EPISODE':
-       return {
-         isPlaying: true,
-         episode: action.episode,
-       }
-     case 'PAUSE':
-       return {
-         ...state,
-         isPlaying: false,
-       }
-     case 'RESUME':
-       return {
-         ...state,
-         isPlaying: true,
-       }
+     // case 'PLAY_EPISODE':
+     //   return {
+     //     isPlaying: true,
+     //     episode: action.episode,
+     //   }
      default:
        return state
    }
