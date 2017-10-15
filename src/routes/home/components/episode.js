@@ -7,6 +7,10 @@ export const Episode = ({episode, playEpisode}) => (
     <img src={episode.image} />
     <div className="podcast">{episode.podcast}</div>
     <div className="title">{episode.title}</div>
+    <button
+      className="play-episode"
+      onClick={() => playEpisode(episode) }
+      >Play</button>
   </article>
 )
 

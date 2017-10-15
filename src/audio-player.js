@@ -88,9 +88,9 @@ export class AudioPlayer extends React.Component {
 
   render() {
     const {episode} = this.props
-    //if (!!episode) {
+    if (!episode) {
       return null
-    //}
+    }
     return (
       <div className="audio-player playing">
         <div className="controls ib">
