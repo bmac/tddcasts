@@ -16,23 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.models import User
-from podcast.models import Episode
-from rest_framework import routers, serializers, viewsets
-
-# Serializers define the API representation.
-class EpisodeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Episode
-        fields = ('id', 'title', 'podcastTitle', 'publishedDate', 'image', 'url', 'duration', 'currentTime')
-
-# ViewSets define the view behavior.
-class EpisodeViewSet(viewsets.ModelViewSet):
-    queryset = Episode.objects.all()
-    serializer_class = EpisodeSerializer
-
-# Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
-router.register(r'episode', EpisodeViewSet)
+from podcast.router import router
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),
