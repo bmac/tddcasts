@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from podcast.models import Episode
 from rest_framework import routers, serializers, viewsets
+from podcast.views import recent_episodes
 
 # Serializers define the API representation.
 class EpisodeSerializer(serializers.ModelSerializer):
@@ -30,11 +31,21 @@ class EpisodeViewSet(viewsets.ModelViewSet):
     queryset = Episode.objects.all()
     serializer_class = EpisodeSerializer
 
+    def get_queryset(self):
+
+        user = self.request.user
+        return Episode.objects.filter(podcast__subscription__user=user, podcast__subscription__subscribed=True)
+
+
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
+router.register(r'podcast', PodcastViewSet)
 router.register(r'episode', EpisodeViewSet)
+# router.register(r'episode/recent', recent_episodes)
+router.register(r'listening-progress', ListeningProgressViewSet)
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),
+    # url(r'^api/episode/recent', recent_episodes),
     url(r'^admin/', admin.site.urls),
 ]
