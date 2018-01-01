@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class Podcast(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -9,20 +12,22 @@ class Podcast(models.Model):
     def __str__(self):
         return self.title
 
-    @property
-    def episodes(self):
-        return self.episode_set
+    class Meta:
+        ordering = ['title']
 
 class Episode(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     title = models.TextField(_("title"), help_text=_("The episode title"), default="")
     duration = models.TextField(_("duration"), blank=True, help_text=_("Duration of enclosure"), default="")
-    published_date = models.DateTimeField(_("published_date"), help_text=_("Date item was published"))
+    published_date = models.DateTimeField(_("published_date"), help_text=_("Date item was published"), auto_now_add=True)
     image = models.URLField(_("image"), blank=True, help_text=_("URL of item cover art"), max_length=1024, default="")
     enclosure_url = models.URLField(_("url"), blank=True, help_text=_("The URL of item."), max_length=1024, default="")
 
     podcast = models.ForeignKey(Podcast)
+
+    class Meta:
+        ordering = ['-published_date']
 
     def __str__(self):
         return self.title
